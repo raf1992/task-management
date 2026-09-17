@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Draggable } from '@hello-pangea/dnd'
+
 import {
   deleteTask,
   editTask,
@@ -21,7 +23,7 @@ function getPriorityStyle(priority) {
   }
 }
 
-function TaskCard({ task }) {
+function TaskCard({ task, index }) {
   const dispatch = useDispatch()
 
   const [isEditing, setIsEditing] = useState(false)
@@ -37,6 +39,7 @@ function TaskCard({ task }) {
 
   const handleEdit = () => {
     if (!title.trim()) {
+      alert('Title wajib diisi!')
       return
     }
 
@@ -63,8 +66,8 @@ function TaskCard({ task }) {
 
   if (isEditing) {
     return (
-      <div className="bg-white rounded-xl shadow-md p-4 mb-4">
-        <h3 className="text-lg font-bold mb-4">
+      <div className="bg-white rounded-xl shadow-md p-5 mb-4">
+        <h3 className="text-xl font-bold mb-4">
           Edit Task
         </h3>
 
@@ -76,7 +79,7 @@ function TaskCard({ task }) {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border rounded-lg px-3 py-2 mb-3"
+          className="w-full border rounded-lg px-3 py-2 mb-4"
         />
 
         <label className="block font-semibold mb-1">
@@ -87,7 +90,7 @@ function TaskCard({ task }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows="3"
-          className="w-full border rounded-lg px-3 py-2 mb-3"
+          className="w-full border rounded-lg px-3 py-2 mb-4"
         />
 
         <label className="block font-semibold mb-1">
@@ -97,7 +100,7 @@ function TaskCard({ task }) {
         <select
           value={priority}
           onChange={(e) => setPriority(e.target.value)}
-          className="w-full border rounded-lg px-3 py-2 mb-3"
+          className="w-full border rounded-lg px-3 py-2 mb-4"
         >
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
@@ -111,7 +114,7 @@ function TaskCard({ task }) {
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="w-full border rounded-lg px-3 py-2 mb-4"
+          className="w-full border rounded-lg px-3 py-2 mb-5"
         >
           <option value="To-Do">To-Do</option>
           <option value="In Progress">In Progress</option>
@@ -138,45 +141,67 @@ function TaskCard({ task }) {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-lg transition">
-      <h3 className="text-lg font-bold mb-2">
-        {task.title}
-      </h3>
-
-      <p className="text-gray-600 text-sm mb-4">
-        {task.description || 'Tidak ada deskripsi'}
-      </p>
-
-      <div className="flex items-center justify-between mb-4">
-        <span
-          className={`px-3 py-1 rounded-full text-xs font-bold border ${getPriorityStyle(
-            task.priority
-          )}`}
+    <Draggable
+      draggableId={String(task.id)}
+      index={index}
+    >
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className={`
+            p-5
+            rounded-xl
+            border
+            mb-4
+            transition-all
+            cursor-grab
+            active:cursor-grabbing
+            ${getPriorityStyle(task.priority)}
+            ${
+              snapshot.isDragging
+                ? 'shadow-2xl scale-105 rotate-1'
+                : 'shadow-md'
+            }
+          `}
         >
-          {task.priority}
-        </span>
+          <h3 className="text-lg font-bold mb-2">
+            {task.title}
+          </h3>
 
-        <span className="text-xs text-gray-500">
-          {task.status}
-        </span>
-      </div>
+          <p className="text-sm mb-4">
+            {task.description || 'Tidak ada deskripsi'}
+          </p>
 
-      <div className="flex gap-2">
-        <button
-          onClick={() => setIsEditing(true)}
-          className="flex-1 bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600"
-        >
-          Edit
-        </button>
+          <div className="flex items-center justify-between mb-4">
+            <span className="px-3 py-1 rounded-full bg-white/70 text-xs font-bold">
+              {task.priority}
+            </span>
 
-        <button
-          onClick={handleDelete}
-          className="flex-1 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
-        >
-          Delete
-        </button>
-      </div>
-    </div>
+            <span className="text-xs font-semibold">
+              {task.status}
+            </span>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              onClick={() => setIsEditing(true)}
+              className="flex-1 bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition"
+            >
+              Edit
+            </button>
+
+            <button
+              onClick={handleDelete}
+              className="flex-1 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
+    </Draggable>
   )
 }
 

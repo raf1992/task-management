@@ -1,37 +1,37 @@
 import { configureStore } from '@reduxjs/toolkit'
 import tasksReducer from '../features/tasks/tasksSlice'
 
-function saveToLocalStorage(state) {
+const loadFromLocalStorage = () => {
   try {
-    const serializedState = JSON.stringify(state)
-    localStorage.setItem('tasksState', serializedState)
-  } catch (error) {
-    console.error('Gagal menyimpan state:', error)
-  }
-}
+    const savedState = localStorage.getItem('tasksState')
 
-function loadFromLocalStorage() {
-  try {
-    const serializedState = localStorage.getItem('tasksState')
-
-    if (serializedState === null) {
+    if (!savedState) {
       return undefined
     }
 
-    return JSON.parse(serializedState)
+    return JSON.parse(savedState)
   } catch (error) {
     console.error('Gagal membaca localStorage:', error)
     return undefined
   }
 }
 
-const persistedState = loadFromLocalStorage()
+const saveToLocalStorage = (state) => {
+  try {
+    localStorage.setItem(
+      'tasksState',
+      JSON.stringify(state)
+    )
+  } catch (error) {
+    console.error('Gagal menyimpan localStorage:', error)
+  }
+}
 
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
   },
-  preloadedState: persistedState,
+  preloadedState: loadFromLocalStorage(),
 })
 
 store.subscribe(() => {

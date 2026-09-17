@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hello-pangea/dnd':
+        specifier: ^18.0.1
+        version: 18.0.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@reduxjs/toolkit':
         specifier: ^2.12.0
         version: 2.12.0(react-redux@9.3.0(@types/react@19.3.0)(react@19.3.0)(redux@5.0.1))(react@19.3.0)
@@ -112,6 +115,10 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  '@babel/runtime@7.29.7':
+    resolution: {integrity: sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/template@7.29.7':
     resolution: {integrity: sha512-puq+Gf35oI24FeN11LkoUQFqv9uwNeWpxXZi/Ji3rRIoKAzKnxRaZ+Gkj0vKS9ZCiTESfng1N9LyOyXvo+m+Gg==}
     engines: {node: '>=6.9.0'}
@@ -168,6 +175,12 @@ packages:
   '@eslint/plugin-kit@0.7.3':
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+
+  '@hello-pangea/dnd@18.0.1':
+    resolution: {integrity: sha512-xojVWG8s/TGrKT1fC8K2tIWeejJYTAeJuj36zM//yEm/ZrnZUSFGS15BpO+jGZT1ybWvyXmeDJwPYb4dhWlbZQ==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -496,6 +509,9 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
+
+  css-box-model@1.2.1:
+    resolution: {integrity: sha512-a7Vr4Q/kd/aw96bnJG332W9V9LkJO69JRcaCYDUqjp6/z0w6VcZjgAcTbgFxEPfBgdnAwlh3iwu+hLopa+flJw==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
@@ -915,6 +931,9 @@ packages:
     resolution: {integrity: sha512-+Owyggi9IxT1ePKGafcI87ubSmxol6smwJ+RAHDQlx9+9cPwFWDiKFFCPuWhr9ignlGpZ9vDQLw67N4dcTVFEA==}
     engines: {node: '>=20'}
 
+  raf-schd@4.0.3:
+    resolution: {integrity: sha512-tQkJl2GRWh83ui2DiPTJz9wEiMN20syf+5oKfB03yYP7ioZcJwsIK8FjrtLwH1m7C7e+Tt2yYBlrOpdT+dyeIQ==}
+
   react-dom@19.3.0:
     resolution: {integrity: sha512-JDk8dgif51OjFoDE70+OT9ICyYr+69HlmihNwp1+Nsfbna3t5sIiCa9ZJktDmQ4/1b/rn26hIAR2uYXDMr5r0Q==}
     peerDependencies:
@@ -977,6 +996,9 @@ packages:
   tapable@2.3.3:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
+
+  tiny-invariant@1.3.3:
+    resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
 
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
@@ -1147,6 +1169,8 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.8
 
+  '@babel/runtime@7.29.7': {}
+
   '@babel/template@7.29.7':
     dependencies:
       '@babel/code-frame': 7.29.7
@@ -1215,6 +1239,18 @@ snapshots:
     dependencies:
       '@eslint/core': 1.2.1
       levn: 0.4.1
+
+  '@hello-pangea/dnd@18.0.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      '@babel/runtime': 7.29.7
+      css-box-model: 1.2.1
+      raf-schd: 4.0.3
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+      react-redux: 9.3.0(@types/react@19.3.0)(react@19.3.0)(redux@5.0.1)
+      redux: 5.0.1
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -1459,6 +1495,10 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  css-box-model@1.2.1:
+    dependencies:
+      tiny-invariant: 1.3.3
 
   csstype@3.2.3: {}
 
@@ -1812,6 +1852,8 @@ snapshots:
     dependencies:
       hookified: 2.2.0
 
+  raf-schd@4.0.3: {}
+
   react-dom@19.3.0(react@19.3.0):
     dependencies:
       react: 19.3.0
@@ -1872,6 +1914,8 @@ snapshots:
   tailwindcss@4.3.3: {}
 
   tapable@2.3.3: {}
+
+  tiny-invariant@1.3.3: {}
 
   tinyglobby@0.2.17:
     dependencies:
